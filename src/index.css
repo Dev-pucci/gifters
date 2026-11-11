@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-wordmark: "Dancing Script", cursive;
+  --font-promo: "Montserrat", "Inter", ui-sans-serif, sans-serif;
+
+  --color-ink: #1f2a37;
+  --color-ink-soft: #4b5563;
+  --color-cream: #f8f6f1;
+  --color-line: #e8e3da;
+
+  /* Sage & olive palette (site redesign). The footer keeps its own colors (pine + greys). */
+  --color-olive: #4a5940;
+  --color-olive-dark: #37432f;
+  --color-sage: #8a9a7b;
+  --color-sage-soft: #eceee6;
+  --color-linen: #f5f1ea;
+  --color-kraft: #c9a27a;
+  --color-brand: #b4233c;
+  --color-brand-dark: #8f1a2f;
+  --color-brand-soft: #fbe9ec;
+  --color-gold: #c8962e;
+  /* "Success" green (free shipping unlocked, savings, paid, completed steps) — matched to the sage palette. */
+  --color-pine: #5c7049;
+  --color-pine-dark: #48593a;
+  --color-pine-soft: #edf0e6;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-olive);
+    outline-offset: 2px;
+  }
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-[4px] px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] transition disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-olive text-white hover:bg-olive-dark;
+}
+@utility btn-outline {
+  @apply btn border border-olive/35 bg-white text-olive hover:border-olive;
+}
+@utility section-title {
+  @apply font-display text-2xl font-medium text-ink sm:text-3xl;
+}
+/* White panel with a soft shadow (product cards, summaries, forms) — the landing-page card style. */
+@utility card {
+  @apply rounded-md bg-white shadow-[0_1px_3px_rgba(31,42,55,0.08)];
+}
+/* Small uppercase label above section titles. */
+@utility eyebrow {
+  @apply text-[11px] font-semibold uppercase tracking-[0.2em] text-olive;
+}
+/* Long-form text on policy pages. */
+@utility prose-page {
+  @apply space-y-8 text-[15px] leading-relaxed text-ink;
+  & h2 {
+    @apply mb-3 font-display text-2xl font-medium;
+  }
+  & h3 {
+    @apply mb-2 mt-5 font-semibold;
+  }
+  & p + p {
+    @apply mt-3;
+  }
+  & ul {
+    @apply mt-3 list-disc space-y-1.5 pl-5;
+  }
+  & a {
+    @apply font-medium text-brand underline;
+  }
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
